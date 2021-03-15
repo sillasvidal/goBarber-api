@@ -35,7 +35,7 @@ class UpdateUserAvatarService {
       throw new AppError('Only authenticated users can change avatar.', 401);
     }
 
-    if (user.avatar && user.avatar !== 'default.png') {
+    if (user.avatar && (user.avatar !== 'default.png')) {
       await this.storageProvider.deleteFile(user.avatar);
     }
 
@@ -45,7 +45,7 @@ class UpdateUserAvatarService {
 
     await this.usersRepository.save(user);
 
-    await this.cacheProvider.invalidatePrefix('providers-list');
+    // await this.cacheProvider.invalidatePrefix('providers-list');
 
     return user;
   }

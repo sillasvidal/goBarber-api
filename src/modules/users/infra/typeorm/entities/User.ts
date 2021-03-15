@@ -25,7 +25,7 @@ class User {
   @Exclude()
   password: string;
 
-  @Column()
+  @Column({ default: 'default.png'})
   avatar: string;
 
   @CreateDateColumn()
